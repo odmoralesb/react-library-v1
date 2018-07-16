@@ -1,0 +1,4 @@
+export default {
+    RECEIVE_BOOKS: 'RECEIVE_BOOKS',
+    REFRESH_BOOKS: 'REFRESH_BOOKS',
+};
