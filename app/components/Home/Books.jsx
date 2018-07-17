@@ -1,55 +1,54 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import image from '../../images/books.jpg';
 
 
 class Books extends Component {
 
-    static propTypes = {
-        getBooks: PropTypes.func.isRequired,
-    }
+  static propTypes = {
+    getBooks: PropTypes.func.isRequired,
+  }
 
 
-    componentDidMount() {
-        this.getData();
-    }
+  componentDidMount() {
+    this.getData();
+  }
 
 
-    getData = () => {
-        const { getBooks } = this.props;
-        getBooks();
-    };
+  getData = () => {
+    const { getBooks } = this.props;
+    getBooks();
+  };
 
 
-    render() {
+  render() {
+    const { booksData } = this.props;
+    const books = booksData.getIn(['books', 'items']);
 
-        const { booksData } = this.props;
-        const books = booksData.getIn(['books', 'items']);
+    console.log('Libros', books);
 
-        console.log('Libros', books);
+    return (<Fragment>
 
-       return (<Fragment>
+      <h3>Lista de libros</h3>
 
-            <h3>Lista de libros</h3>
+      {books && books.map((book, index) => (<Fragment key={book.get('id')}>
 
-            {books && books.map((book, index) => {
-                return(<Fragment key={ book.get('id') }>
+        <div style={{ float: 'left', width: '25%' }}>
 
-                    <div style = {{ float: 'left', width: '25%' }}>
+          <h5>{index + 1} - { book.getIn(['volumeInfo', 'title']) }</h5>
 
-                        <h5>{index + 1} - { book.getIn(['volumeInfo', 'title']) }</h5>
+          <div>
+            <img src={book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail'])} />
+          </div>
 
-                        <div>
-                            <img src={ book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail']) } />
-                        </div>
-
-                    </div>
+        </div>
 
 
-                </Fragment>);
-            })}
+      </Fragment>))}
+      <img src={image} />
 
-        </Fragment>);
-    }
+    </Fragment>);
+  }
 
 
 }
