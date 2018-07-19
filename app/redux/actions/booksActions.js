@@ -1,9 +1,16 @@
 import Api from '../../services/Api';
 
 
-const receiveBooks = (books) => ({
+const receiveBooks = (payload) => ({
     type: 'RECEIVE_BOOKS',
-    books,
+    payload,
+});
+
+
+
+const receiveSingleBook = (payload) => ({
+    type: 'SINGLE_BOOK',
+    payload,
 });
 
 
@@ -14,15 +21,45 @@ export const refreshBooks = () => ({
 
 
 
-export function getBooks() {
+export function getBooks(page=1, categorie=null) {    
 
     return async dispatch => {
 
-      const books = await Api.getBooks();
+      const index = (page-1) * 10
 
-      if (books.ok) {     
-        dispatch(receiveBooks(books.data));
+      const books = await Api.getBooks(index, categorie);
+
+      const payload = {
+        categorie,
+        page,
+        books: books.data
       }
+
+
+      dispatch(receiveBooks(payload));
+
+
+    };
+
+  }
+
+
+
+
+  export function getBook(id) {    
+
+    return async dispatch => {
+
+      const book = await Api.getBook(id);
+
+
+
+      const payload = {
+        book: book.data
+      }
+
+
+      dispatch(receiveSingleBook(payload));
 
     };
 

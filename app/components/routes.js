@@ -8,6 +8,7 @@ import {
 
 import Layout from './Layout';
 import Home from './Home';
+import Book from './Home/Book';
 import NotFound from './404';
 
 const Routes = () => (
@@ -15,6 +16,7 @@ const Routes = () => (
     <Router>
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/:id" exact component={Book} />
         <Route component={NotFound} />
       </Switch>
     </Router>

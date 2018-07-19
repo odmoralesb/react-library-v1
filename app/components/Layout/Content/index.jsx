@@ -5,8 +5,8 @@ import Proptypes from 'prop-types';
 class Content extends Component {
 
   static propTypes = {
-        body: Proptypes.object.isRequired
-    };
+      body: Proptypes.object.isRequired
+  };
 
   render() {
 
