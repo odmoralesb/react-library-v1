@@ -34,13 +34,16 @@ export const Container = styled.div`
     flex-wrap: wrap
 `;
 
-
-
-
-
 export const BookItem = styled.div`
     margin: 20px;
 `;
+
+export const FirsLetter = styled.div`
+    &:first-letter { 
+        text-transform: uppercase;
+    }
+`;
+
 
 
 
