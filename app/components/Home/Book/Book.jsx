@@ -4,24 +4,8 @@ import PropTypes from 'prop-types';
 class Book extends Component {
 
     static propTypes = {
-        getBook: PropTypes.func.isRequired,
+
     }
-
-
-    componentDidMount() {
-        this.getBook();
-    }
-
-
-    getBook = () => {
-
-        const { id } = this.props.match.params
-        const { getBook } = this.props
-
-        getBook(id);
-
-    };
-
 
     render() {
 
@@ -45,13 +29,12 @@ class Book extends Component {
                         { book.getIn(['volumeInfo', 'description']) }                    
                     </p>
 
+                    <br />
+
+                    <hr />
+
                     </Fragment>
                 )}
-
-                <br />
-
-                <hr />
-
             </Fragment>
 
         );
@@ -60,3 +43,7 @@ class Book extends Component {
 }
 
 export default Book;
+
+
+
+

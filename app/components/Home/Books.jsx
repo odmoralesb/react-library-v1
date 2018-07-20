@@ -1,28 +1,20 @@
 import React, { Component, Fragment } from 'react';
-
-import Pagination from 'react-js-pagination'
-
 import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import Pagination from 'react-js-pagination'
 
 import { PaginatorCustom } from './styles';
 
+import Book from './Book';
 
 class Books extends Component {
 
   static propTypes = {
     getBooks: PropTypes.func.isRequired,
+    getBook: PropTypes.func.isRequired,
+    booksData: ImmutablePropTypes.map.isRequired
   }
 
-
-  componentDidMount() {
-    this.getAllBooks();
-  }
-
-
-  getAllBooks = () => {
-    const { getBooks } = this.props;
-    getBooks();
-  };
 
 
   handleChangePage = (page) => {
@@ -31,10 +23,14 @@ class Books extends Component {
   }
 
 
-  handleChangeCategorie = (categorie) => {
-      const { getBooks } = this.props;
-      getBooks(1, categorie);
+
+  grtBook = (id) => {
+    const { getBook } = this.props
+    getBook(id)
   }
+
+
+
 
 
   render() {
@@ -48,53 +44,33 @@ class Books extends Component {
     const totalPages = Math.floor(totalItems/pageSize);
 
 
-    console.log('respuesta:', totalPages);
+    console.log('totalPages:', totalPages);
     console.log('booksData:', booksData);
 
 
-    return (<Fragment>
-
-      <div>
-          <a href="#" onClick={ () => this.handleChangeCategorie('finanzas') }>Finanzas</a>
-      </div>
-
-      <div>
-          <a href="#" onClick={ () => this.handleChangeCategorie('deporte') }>Deporte</a>
-      </div>
-
-      <div>
-          <a href="#" onClick={ () => this.handleChangeCategorie('carros') }>Carros</a>
-      </div>
+    return (
+      <Fragment>
 
 
-      <div>
-          <a href="#" onClick={ () => this.handleChangeCategorie('educacion') }>Educacion</a>
-      </div>
+        <Book />
 
 
-      <h3>Lista de libros</h3>
+        <h3>Lista de libros</h3>
 
-      {books && books.map((book, index) => (<Fragment key={book.get('id')}>
-
-        <div>
-
-          <h5>{index + 1} - { book.getIn(['volumeInfo', 'title']) }</h5>
+        {books && books.map((book, index) => (<Fragment key={book.get('id')}>
 
           <div>
 
-            <a href={`/${book.get('id')}`}>
-                <img src={book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail'])} />
-            </a>
+            <h5>{index + 1} - { book.getIn(['volumeInfo', 'title']) }</h5>
+
+            <div onClick = {(e) => this.grtBook( book.get('id') ) } >
+              <img src={book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail'])} />
+            </div>
 
           </div>
 
 
-
-
-        </div>
-
-
-      </Fragment>))}
+        </Fragment>))}
 
         {
             (pageSize < totalItems &&
@@ -114,7 +90,8 @@ class Books extends Component {
             )
         }
 
-    </Fragment>);
+      </Fragment>
+      );
   }
 
 

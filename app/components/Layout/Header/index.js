@@ -1,22 +1,16 @@
-import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getBooks } from '../../../redux/actions';
+import Header from './Header';
 
-import { HeaderContainer, StyledTypography } from './styles';
+const mapStateToProps = (state) => ({
 
-const Header = () => (
-  <HeaderContainer>
-    <AppBar position="static" color="primary">
-      <Toolbar>
-        <StyledTypography variant="title" color="inherit">
-            React-Library
-        </StyledTypography>
-        <Button href="/" color="inherit">Home</Button>
-        <Button href="/contact" color="inherit">Acerca de</Button>
-      </Toolbar>
-    </AppBar>
-  </HeaderContainer>
+});
+
+const mapDispatchToProps = (dispatch) => (
+  bindActionCreators({
+    getBooks,
+  }, dispatch)
 );
 
-export default Header;
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
