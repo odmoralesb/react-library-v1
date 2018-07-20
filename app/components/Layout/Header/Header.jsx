@@ -10,6 +10,9 @@ import Button from '@material-ui/core/Button';
 import { HeaderContainer, StyledTypography } from './styles';
 
 
+import Menu from './Menu';
+
+
 class Header extends Component {
     
       static propTypes = {
@@ -52,22 +55,7 @@ class Header extends Component {
                     </Toolbar>
                 </AppBar>
 
-
-                <div>
-                    <a href="#" onClick={ () => this.handleChangeCategorie('finanzas') }>Finanzas</a>
-                </div>
-
-                <div>
-                    <a href="#" onClick={ () => this.handleChangeCategorie('deporte') }>Deporte</a>
-                </div>
-
-                <div>
-                    <a href="#" onClick={ () => this.handleChangeCategorie('carros') }>Carros</a>
-                </div>
-
-                <div>
-                    <a href="#" onClick={ () => this.handleChangeCategorie('educacion') }>Educacion</a>
-                </div>
+                <Menu />
 
             </HeaderContainer>
         );
