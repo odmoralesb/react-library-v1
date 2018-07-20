@@ -1,39 +1,64 @@
 import React, { Component, Fragment } from 'react';
+import MenuIcon from '@material-ui/icons/Menu';
+import { Dropdown } from './style'
 
 
-// import AppBar from '@material-ui/core/AppBar';
-// import Toolbar from '@material-ui/core/Toolbar';
-// import Button from '@material-ui/core/Button';
-
-// import { HeaderContainer, StyledTypography } from './styles';
+class Menu extends Component {
 
 
+    handleChangeCategorie = (categorie) => {
+        const { getBooks } = this.props;
+        getBooks(1, categorie);
+    }
+
+    
+    
+    
+      render() { 
 
 
 
-const Menu = () => (
 
-  <Fragment>
+        return (
+            
+
+            <Fragment>    
+
+                <Dropdown> 
+
+                    <MenuIcon />     
+                    
+                    <div>
+                        <a href="#" onClick = { () => this.handleChangeCategorie('literatura') }>Literatura</a>
+                        <a href="#" onClick = { () => this.handleChangeCategorie('romantica') } >Romantica</a>
+                        <a href="#" onClick = { () => this.handleChangeCategorie('fantasia') }>Fantasia</a>
+                        <a href="#" onClick = { () => this.handleChangeCategorie('infantil') }>Infantil</a>
+                        <a href="#" onClick = { () => this.handleChangeCategorie('ocio') }>Ocio</a>
+                        <a href="#" onClick = { () => this.handleChangeCategorie('salud') } >Salud</a>
+                        <a href="#" onClick = { () => this.handleChangeCategorie('pensamiento') }>Pensamiento</a>
+                        <a href="#" onClick = { () => this.handleChangeCategorie('religion') }>Religion</a>
+                        <a href="#" onClick = { () => this.handleChangeCategorie('actualidad') }>Actualidad</a>
+                    </div>
+
+                </Dropdown>
+
+            </Fragment>
 
 
-    <div>
-        <a href="#" onClick={ () => this.handleChangeCategorie('finanzas') }>Finanzas</a>
-    </div>
 
-    <div>
-        <a href="#" onClick={ () => this.handleChangeCategorie('deporte') }>Deporte</a>
-    </div>
+        );
 
-    <div>
-        <a href="#" onClick={ () => this.handleChangeCategorie('carros') }>Carros</a>
-    </div>
 
-    <div>
-        <a href="#" onClick={ () => this.handleChangeCategorie('educacion') }>Educacion</a>
-    </div>
+      }
+    
+    
+    }
 
-  </Fragment>
 
-);
-
+    
 export default Menu;
+
+
+
+
+
