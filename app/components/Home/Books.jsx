@@ -71,7 +71,7 @@ class Books extends Component {
                 <h5>{index + 1} - { book.getIn(['volumeInfo', 'title']) }</h5>
 
                 <div onClick = {(e) => this.grtBook( book.get('id') ) } >
-                  <img src={book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail'])} />
+                  <img src={book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail'])} height='200px' width='130px' />
                 </div>                
 
 
