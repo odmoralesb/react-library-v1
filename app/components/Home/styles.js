@@ -29,6 +29,19 @@ export const PaginatorCustom = styled.div`
     }
 `;
 
+export const Container = styled.div`
+    display: flex;
+    flex-wrap: wrap
+`;
+
+
+
+
+
+export const BookItem = styled.div`
+    margin: 20px;
+`;
+
 
 
 

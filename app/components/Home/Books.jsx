@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Pagination from 'react-js-pagination'
 
-import { PaginatorCustom } from './styles';
+import { PaginatorCustom, Container, BookItem } from './styles';
 
 import Book from './Book';
 
@@ -57,20 +57,38 @@ class Books extends Component {
 
         <h3>Lista de libros</h3>
 
-        {books && books.map((book, index) => (<Fragment key={book.get('id')}>
 
-          <div>
+        <Container>
 
-            <h5>{index + 1} - { book.getIn(['volumeInfo', 'title']) }</h5>
+        {books && books.map((book, index) => (
+        
+          <Fragment key={book.get('id')}>
 
-            <div onClick = {(e) => this.grtBook( book.get('id') ) } >
-              <img src={book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail'])} />
-            </div>
+            
+          
+              <BookItem>
 
-          </div>
+                <h5>{index + 1} - { book.getIn(['volumeInfo', 'title']) }</h5>
+
+                <div onClick = {(e) => this.grtBook( book.get('id') ) } >
+                  <img src={book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail'])} />
+                </div>                
 
 
-        </Fragment>))}
+
+
+              </BookItem>
+
+
+            
+
+
+          </Fragment>))}
+
+
+        </Container>
+
+      
 
         {
             (pageSize < totalItems &&

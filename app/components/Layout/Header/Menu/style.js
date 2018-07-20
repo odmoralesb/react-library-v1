@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 
 export const Dropdown  = styled.div`
 
-
+    margin-right: 15px;
     position: relative;
     display: inline-block;
 

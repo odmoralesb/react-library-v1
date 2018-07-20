@@ -51,6 +51,7 @@ class Header extends Component {
             <HeaderContainer>
                 <AppBar position="static" color="primary">
                     <Toolbar>
+                        <Menu getBooks = { this.props.getBooks } />
                         <StyledTypography variant="title" color="inherit">
                             React-Library
                         </StyledTypography>
@@ -58,9 +59,6 @@ class Header extends Component {
                         <Button href="/contact" color="inherit">Acerca de</Button>
                     </Toolbar>
                 </AppBar>
-
-                <Menu getBooks = { this.props.getBooks } />
-
             </HeaderContainer>
         );
 
