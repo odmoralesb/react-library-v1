@@ -33,10 +33,6 @@ class Header extends Component {
 
 
     handleChangeCategorie = (categorie) => {
-
-
-        console.log('handle Categoria en header', categorie)
-
         const { getBooks } = this.props;
         getBooks(1, categorie);
     }

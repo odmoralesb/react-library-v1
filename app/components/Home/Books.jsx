@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Pagination from 'react-js-pagination'
 
-import { PaginatorCustom, Container, BookItem, FirsLetter } from './styles';
+
 
 import Book from './Book';
 
-import { withStyles } from '@material-ui/core/styles';
-import classnames from 'classnames';
-import Card from '@material-ui/core/Card';
+
+
+
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
@@ -23,6 +22,16 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+
+
+import { 
+  PaginatorCustom, 
+  Container, 
+  BookItem, 
+  FirsLetter, 
+  CardMediaStyle,
+  CardStyle 
+} from './styles';
 
 class Books extends Component {
 
@@ -41,11 +50,10 @@ class Books extends Component {
 
 
 
-  grtBook = (id) => {
+  getBook = (id) => {
     const { getBook } = this.props
     getBook(id)
   }
-
 
 
 
@@ -72,60 +80,51 @@ class Books extends Component {
         <Book />
 
 
-        <h3>Lista de libros</h3>
+        
+        { books && (<h3>Lista de libros</h3>)}      
+        
 
 
         <Container>
 
-        {books && books.map((book, index) => (
+        {books && books.map((book, index) => {
+
+
+           const avatar = book.getIn(['volumeInfo', 'authors', 0]) ? book.getIn(['volumeInfo', 'authors', 0]).substr(0, 1) : '?'
+
         
-          <Fragment key={book.get('id')}>
-              <BookItem>
+          return (
+            <Fragment key={book.get('id')}>
+                <BookItem>
+                  <div>
+                    <CardStyle>
+                      <CardHeader avatar={
+                          <Avatar aria-label="Recipe">
+                            <FirsLetter>
+                              { avatar }
+                            </FirsLetter>
+                          </Avatar>
+                        }
+                        action={
+                          <IconButton onClick={ () => this.getBook( book.get('id') ) }>
+                            <MoreVertIcon />
+                          </IconButton>
+                        }
+                        title={ book.getIn(['volumeInfo', 'title']) }
+                        subheader={ book.getIn(['volumeInfo', 'categories', 0]) }
+                      />
+                      <CardMediaStyle
+                        image={book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail'])}
+                      />
+                    </CardStyle>
+                  </div>
+
+                </BookItem>
+            </Fragment>
+          )
 
 
-
-
-                <div>
-                  <Card>
-                  <CardHeader avatar={
-                      <Avatar aria-label="Recipe">
-                        <FirsLetter>
-                          { book.getIn(['volumeInfo', 'title']).substring(0, 1) }
-                        </FirsLetter>
-                      </Avatar>
-                    }
-                    action={
-                      <IconButton>
-                        <MoreVertIcon />
-                      </IconButton>
-                    }
-                    title={ book.getIn(['volumeInfo', 'title']) }
-                    subheader={ book.getIn(['volumeInfo', 'authors',0]) }
-                  />
-                  <CardMedia
-                    image={book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail'])}
-                  />
-                  </Card>
-                </div>
-
-
-
-                {/* <h5>{index + 1} - { book.getIn(['volumeInfo', 'title']) }</h5>
-
-                <div onClick = {(e) => this.grtBook( book.get('id') ) } >
-                  <img src={book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail'])} height='200px' width='130px' />
-                </div>                 */}
-
-
-
-
-
-
-
-
-
-              </BookItem>
-          </Fragment>))}
+        })}
 
 
         </Container>
