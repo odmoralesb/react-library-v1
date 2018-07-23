@@ -8,7 +8,6 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
@@ -21,7 +20,8 @@ import {
     BookItem, 
     FirsLetter, 
     CardMediaStyle,
-    CardStyle 
+    CardStyle,
+    TypographyStyle 
   } from './styles';
 
 
@@ -67,14 +67,18 @@ class Book extends Component {
                                     subheader={ book.getIn(['volumeInfo', 'subtitle']) }
                                 />
 
-                                <CardMediaStyle
-                                    image={ book.getIn(['volumeInfo', 'imageLinks', 'small'])  }
-                                />
+
+                                {book.getIn(['volumeInfo', 'imageLinks', 'small']) && (
+                                    <CardMediaStyle
+                                    image={book.getIn(['volumeInfo', 'imageLinks', 'small'])}
+                                    />
+                                )}
 
                                 <CardContent>
-                                    <Typography paragraph>
+                                    <h3>Descripcion</h3>
+                                    <TypographyStyle paragraph>
                                         { book.getIn(['volumeInfo', 'description']) }
-                                    </Typography>
+                                    </TypographyStyle>
                                 </CardContent>
 
                             </CardStyle>

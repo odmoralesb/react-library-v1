@@ -1,13 +1,16 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-
-
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
-import { HeaderContainer, StyledTypography } from './styles';
+
+import { 
+    HeaderContainer, 
+    StyledTypography, 
+    TextFieldStyle, 
+    ToolbarStyle, 
+    AppBarStyle 
+} from './styles';
 
 
 import Menu from './Menu';
@@ -45,16 +48,16 @@ class Header extends Component {
 
         return (
             <HeaderContainer>
-                <AppBar position="static" color="primary">
-                    <Toolbar>
+                <AppBarStyle position="static" style={{backgroundColor: '#000000'}}>
+                    <ToolbarStyle>
                         <Menu getBooks = { this.props.getBooks } />
                         <StyledTypography variant="title" color="inherit">
                             React-Library
                         </StyledTypography>
                         <Button href="/" color="inherit">Home</Button>
                         <Button href="/contact" color="inherit">Acerca de</Button>
-                    </Toolbar>
-                </AppBar>
+                    </ToolbarStyle>
+                </AppBarStyle>
             </HeaderContainer>
         );
 

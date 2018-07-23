@@ -4,17 +4,13 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import Pagination from 'react-js-pagination'
 
 
-
 import Book from './Book';
-
-
 
 
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
@@ -30,8 +26,12 @@ import {
   BookItem, 
   FirsLetter, 
   CardMediaStyle,
-  CardStyle 
+  CardStyle,
+  AvatarStyle,
+  TextFieldStyle 
 } from './styles';
+
+
 
 class Books extends Component {
 
@@ -81,8 +81,10 @@ class Books extends Component {
 
 
         
-        { books && (<h3>Lista de libros</h3>)}      
-        
+        { books && (<h3>Lista de libros</h3>) } 
+
+
+
 
 
         <Container>
@@ -90,20 +92,23 @@ class Books extends Component {
         {books && books.map((book, index) => {
 
 
-           const avatar = book.getIn(['volumeInfo', 'authors', 0]) ? book.getIn(['volumeInfo', 'authors', 0]).substr(0, 1) : '?'
+          if (! book) return;
 
+
+           const avatar = book.getIn(['volumeInfo', 'authors', 0]) ? book.getIn(['volumeInfo', 'authors', 0]).substr(0, 1) : '?'
         
           return (
             <Fragment key={book.get('id')}>
                 <BookItem>
-                  <div>
+
                     <CardStyle>
+
                       <CardHeader avatar={
-                          <Avatar aria-label="Recipe">
+                          <AvatarStyle aria-label="Recipe">
                             <FirsLetter>
                               { avatar }
                             </FirsLetter>
-                          </Avatar>
+                          </AvatarStyle>
                         }
                         action={
                           <IconButton onClick={ () => this.getBook( book.get('id') ) }>
@@ -113,11 +118,37 @@ class Books extends Component {
                         title={ book.getIn(['volumeInfo', 'title']) }
                         subheader={ book.getIn(['volumeInfo', 'categories', 0]) }
                       />
-                      <CardMediaStyle
-                        image={book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail'])}
-                      />
+
+                      {book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail']) && (
+                        <CardMediaStyle onClick={ () => this.getBook( book.get('id') ) }
+                          image={book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail'])}
+                        />
+                      )}
+
+                      <CardContent>
+
+                            <strong>Autores</strong>
+
+                            <ul> 
+                            {
+                              book.getIn(['volumeInfo', 'authors']) && book.getIn(['volumeInfo', 'authors']).map((a, i) => {
+                                return (<li key={i}>{a}</li>)
+                              })
+                            }
+                            </ul>
+
+                      </CardContent>
+
+
+
+
                     </CardStyle>
-                  </div>
+
+
+
+
+
+
 
                 </BookItem>
             </Fragment>

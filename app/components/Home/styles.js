@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
+import Avatar from '@material-ui/core/Avatar';
+
+import TextField from '@material-ui/core/TextField';
 
 export const PaginatorCustom = styled.div`
     width: 60%;
@@ -57,13 +60,26 @@ export const CardStyle = styled(Card)`
 
 
 
+export const AvatarStyle = styled(Avatar)`
+    background-color: red;
+`;
+
+
+
 
 export const CardMediaStyle = styled(CardMedia)`
     width: 100%;
-    height: 200px;
+    height: 100px;
     background-image: url('img_flowers.jpg');
     background-repeat: no-repeat;
     background-size: contain;
+    cursor: pointer;
+`;
+
+
+
+export const TextFieldStyle = styled(TextField)`
+
 `;
 
 
