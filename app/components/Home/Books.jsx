@@ -19,6 +19,9 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
 
 import { 
   PaginatorCustom, 
@@ -56,6 +59,16 @@ class Books extends Component {
   }
 
 
+  state = {
+    search: '',
+  };  
+  
+
+  onChange = (key, value) => {
+    if (key == 'search') this.setState({ search: value });
+  }
+
+
 
 
   render() {
@@ -80,11 +93,38 @@ class Books extends Component {
         <Book />
 
 
+        { books && (
+
+          <Fragment>
+
+            <TextField
+              id="search"
+              label="Buscar"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              placeholder=""
+              fullWidth
+              margin="normal"
+              onChange={ (e) => this.onChange('search', e.target.value) }
+            />
+
+            <Button 
+            variant="contained" 
+            style={{backgroundColor: '#000000', color: '#ffffff'}}
+            onClick = {(e) => this.props.getBooks(1, this.state.search) }>
+              Buscar
+            </Button>
+
+          </Fragment> 
+
+        ) } 
+
+
+      
+
         
         { books && (<h3>Lista de libros</h3>) } 
-
-
-
 
 
         <Container>

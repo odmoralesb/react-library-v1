@@ -37,8 +37,6 @@ function booksReducer(state = initialState, action) {
         });
 
 
-
-
     default:
       return initialState;
 
