@@ -29,7 +29,7 @@ class Menu extends Component {
                     <MenuIcon />     
                     
                     <div>
-                        <a href="#" onClick = { () => this.handleChangeCategorie('literatura') }>Literatura</a>
+                        <a href="/" onClick = { () => this.handleChangeCategorie('literatura') }>Literatura</a>
                         <a href="#" onClick = { () => this.handleChangeCategorie('romantica') } >Romantica</a>
                         <a href="#" onClick = { () => this.handleChangeCategorie('fantasia') }>Fantasia</a>
                         <a href="#" onClick = { () => this.handleChangeCategorie('infantil') }>Infantil</a>

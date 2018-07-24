@@ -14,10 +14,6 @@ const receiveSingleBook = (payload) => ({
 });
 
 
-
-
-
-
 export const refreshBooks = () => ({
     type: 'REFRESH_BOOKS',
 });
@@ -56,7 +52,6 @@ export function getBooks(page=1, categorie=null) {
       const payload = {
         book: book.data
       }
-
 
       dispatch(receiveSingleBook(payload));
 

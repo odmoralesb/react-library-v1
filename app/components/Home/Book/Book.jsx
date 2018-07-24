@@ -32,11 +32,17 @@ class Book extends Component {
 
     }
 
-    render() {
+    componentDidMount() {
+        const { id } = this.props.match.params;
+        const { getBook } = this.props;
+        getBook(id);
+      }
 
-        const { book } = this.props;
 
 
+    render() {  
+
+        const { book } = this.props 
 
         let avatar;
 

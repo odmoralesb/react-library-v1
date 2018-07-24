@@ -19,7 +19,6 @@ function booksReducer(state = initialState, action) {
             .set('categorie',action.payload.categorie)
             .set('page', action.payload.page)
             .set('books', fromJS(action.payload.books))
-            .set('book', null)
             .set('refresh', false);
         });
     }
@@ -31,9 +30,7 @@ function booksReducer(state = initialState, action) {
     case 'SINGLE_BOOK':
         return state.withMutations(map => {
             map
-            .set('books', null)
             .set('book', fromJS(action.payload.book))
-            .set('refresh', false);
         });
 
 

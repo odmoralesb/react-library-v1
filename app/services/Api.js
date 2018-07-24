@@ -1,5 +1,4 @@
 import { create } from 'apisauce';
-import { trans } from '../utils/trans';
 
 
 

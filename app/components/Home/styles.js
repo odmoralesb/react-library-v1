@@ -28,7 +28,7 @@ export const PaginatorCustom = styled.div`
             list-style:none;
             a {
                 color:white;
-                background-color: blue;
+                background-color: black;
                 padding: 5px;
             }            
         };

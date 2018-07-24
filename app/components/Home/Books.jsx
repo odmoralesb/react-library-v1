@@ -2,9 +2,10 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Pagination from 'react-js-pagination'
+import  { Link } from 'react-router-dom';
 
 
-import Book from './Book';
+//import Book from './Book';
 
 
 import CardHeader from '@material-ui/core/CardHeader';
@@ -90,9 +91,6 @@ class Books extends Component {
       <Fragment>
 
 
-        <Book />
-
-
         { books && (
 
           <Fragment>
@@ -159,10 +157,16 @@ class Books extends Component {
                         subheader={ book.getIn(['volumeInfo', 'categories', 0]) }
                       />
 
-                      {book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail']) && (
-                        <CardMediaStyle onClick={ () => this.getBook( book.get('id') ) }
-                          image={book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail'])}
-                        />
+                      {book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail']) ? (
+                        <Link to={`/book/${book.get('id')}`}>
+                          <CardMediaStyle 
+                            image={book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail'])}
+                          />
+                        </Link>
+                      ) : (
+
+                        <Link to={`/book/${book.get('id')}`}>{ book.get('id') }</Link>
+
                       )}
 
                       <CardContent>
@@ -179,16 +183,7 @@ class Books extends Component {
 
                       </CardContent>
 
-
-
-
                     </CardStyle>
-
-
-
-
-
-
 
                 </BookItem>
             </Fragment>
