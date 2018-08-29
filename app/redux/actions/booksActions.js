@@ -14,6 +14,12 @@ const receiveSingleBook = (payload) => ({
 });
 
 
+const receiveCategorie = (payload) => ({
+    type: 'SINGLE_BOOK',
+    payload,
+});
+
+
 export const refreshBooks = () => ({
     type: 'REFRESH_BOOKS',
 });

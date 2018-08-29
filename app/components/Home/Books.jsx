@@ -41,10 +41,23 @@ class Books extends Component {
 
   static propTypes = {
     getBooks: PropTypes.func.isRequired,
-    getBook: PropTypes.func.isRequired,
     booksData: ImmutablePropTypes.map.isRequired
   }
+    
+    
+  componentDidMount() {
+    const { categorie } = this.props.match.params;
+    const { getBooks } = this.props;
+    this.setState({ categorie })
+    getBooks(1, categorie);
+  }
 
+
+
+  getAllBooks = () => {
+    const { getBooks } = this.props;
+    getBooks();
+  }; 
 
 
   handleChangePage = (page) => {
@@ -53,15 +66,9 @@ class Books extends Component {
   }
 
 
-
-  getBook = (id) => {
-    const { getBook } = this.props
-    getBook(id)
-  }
-
-
   state = {
     search: '',
+    categorie: null
   };  
   
 
@@ -82,10 +89,10 @@ class Books extends Component {
     const pageSize = 10
     const totalPages = Math.floor(totalItems/pageSize);
 
+    const { categorie } = this.props.match.params;
 
-    console.log('totalPages:', totalPages);
-    console.log('booksData:', booksData);
-
+    //if (categorie && categorie != this.state.categorie) this.props.getBooks(1,categorie);
+    //if (categorie != this.state.categorie) this.props.getBooks(1,categorie);
 
     return (
       <Fragment>
@@ -117,11 +124,8 @@ class Books extends Component {
           </Fragment> 
 
         ) } 
-
-
-      
-
         
+                
         { books && (<h3>Lista de libros</h3>) } 
 
 
@@ -149,7 +153,7 @@ class Books extends Component {
                           </AvatarStyle>
                         }
                         action={
-                          <IconButton onClick={ () => this.getBook( book.get('id') ) }>
+                          <IconButton>
                             <MoreVertIcon />
                           </IconButton>
                         }
@@ -203,7 +207,7 @@ class Books extends Component {
                     <Pagination
                         activePage={ page }
                         itemsCountPerPage={pageSize}
-                        totalItemsCount={ totalItems }
+                        totalItemsCount={ 220 }
                         pageRangeDisplayed={ 10 }
                         onChange={ this.handleChangePage }
                         firstPageText=" << "

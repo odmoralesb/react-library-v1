@@ -27,6 +27,10 @@ function booksReducer(state = initialState, action) {
         return state.set('refresh', true);
 
 
+    case 'SET_CATEGORIA':
+        return state.set('categorie', action.payload.categorie);
+
+
     case 'SINGLE_BOOK':
         return state.withMutations(map => {
             map
