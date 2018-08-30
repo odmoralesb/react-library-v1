@@ -1,21 +1,16 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setCategorie } from '../../../../redux/actions';
-import Menu from './Menu';
+import { getBooks } from '../../redux/actions';
+import Books from './Books';
 
 const mapStateToProps = (state) => ({
-
+  booksData: state.booksData,
 });
 
 const mapDispatchToProps = (dispatch) => (
   bindActionCreators({
-    setCategorie,
+    getBooks,
   }, dispatch)
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
-
-
-
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(Books);

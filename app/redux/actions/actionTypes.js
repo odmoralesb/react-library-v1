@@ -3,4 +3,5 @@ export default {
     REFRESH_BOOKS: 'REFRESH_BOOKS',
     SINGLE_BOOK: 'SINGLE_BOOK',    
     SET_CATEGORIA: 'SET_CATEGORIA',
+    LOAD_HOME: 'LOAD_HOME',
 };

@@ -7,9 +7,10 @@ const initialState = fromJS({
   categorie: null,
   page: 1,
   book: null,
+  latestPosts: [],
 });
 
-function booksReducer(state = initialState, action) {  
+function booksReducer(state = initialState, action) {    
 
   switch (action.type) {
 
@@ -23,11 +24,7 @@ function booksReducer(state = initialState, action) {
         });
     }
 
-    case 'REFRESH_POSTS':
-        return state.set('refresh', true);
-
-
-    case 'SET_CATEGORIA':
+    case 'SET_CATEGORIE':
         return state.set('categorie', action.payload.categorie);
 
 
@@ -36,7 +33,6 @@ function booksReducer(state = initialState, action) {
             map
             .set('book', fromJS(action.payload.book))
         });
-
 
     default:
       return initialState;

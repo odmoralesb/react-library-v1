@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getBooks, getBook, search } from '../../redux/actions';
-import Books from './Books';
+import { getPosts } from '../../redux/actions';
+import Home from './Home';
 
 const mapStateToProps = (state) => ({
-  booksData: state.booksData,
+  homeData: state.homeData,
 });
 
 const mapDispatchToProps = (dispatch) => (
   bindActionCreators({
-    getBooks,
+    getPosts,
   }, dispatch)
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Books);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

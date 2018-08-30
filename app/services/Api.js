@@ -27,10 +27,10 @@ class Api {
 
       if (categorie) {
         response = 
-          await api.get(`/books/v1/volumes?q=${categorie}&startIndex=${index}`);
+          await api.get(`/books/v1/volumes?q=${categorie}&filter=paid-ebooks&startIndex=${index}`);
       } else {
         response =  
-          await api.get(`/books/v1/volumes?q=finanzas,deportes,carros,educacion&startIndex=${index}`);
+          await api.get(`/books/v1/volumes?q=filter=paid-ebooks&startIndex=${index}`);
       }
 
       return response;
@@ -39,8 +39,51 @@ class Api {
     } catch (e) {
       throw new Error(e);
     }
+
   }
 
+
+
+
+  async latestPosts() {
+
+    try {
+
+      const response = 
+        await api.get(`/books/v1/volumes?q=filter=paid-ebooks`);
+        
+      const books = (response.ok) ? response.data.items.slice(0, 4) : [];
+
+      return books;
+
+    } catch (e) {
+      throw new Error(e);
+    }
+    
+  }
+
+
+
+
+  async recommendedPosts() {
+
+    try {
+
+      const index = Math.floor((Math.random() * 10) + 1);
+
+      const response = 
+        await api.get(`/books/v1/volumes?q=filter=paid-ebooks&startIndex=${index}`);
+
+      const books = (response.ok) ? response.data.items.slice(0, 4) : [];
+
+      return books;
+
+
+    } catch (e) {
+      throw new Error(e);
+    }
+    
+  }
 
 
 

@@ -43,15 +43,14 @@ class Books extends Component {
     getBooks: PropTypes.func.isRequired,
     booksData: ImmutablePropTypes.map.isRequired
   }
-    
-    
-  componentDidMount() {
-    const { categorie } = this.props.match.params;
-    const { getBooks } = this.props;
-    this.setState({ categorie })
+  
+
+  changeCategorie() {
+    const { getBooks, booksData } = this.props;
+    const categorie = booksData.get('categorie');
+    this.setState({ categorie });
     getBooks(1, categorie);
   }
-
 
 
   getAllBooks = () => {
@@ -87,12 +86,15 @@ class Books extends Component {
     const page = booksData.get('page');
     const totalItems = booksData.getIn(['books', 'totalItems'])
     const pageSize = 10
-    const totalPages = Math.floor(totalItems/pageSize);
+    const categorie = booksData.get('categorie');
 
-    const { categorie } = this.props.match.params;
 
-    //if (categorie && categorie != this.state.categorie) this.props.getBooks(1,categorie);
-    //if (categorie != this.state.categorie) this.props.getBooks(1,categorie);
+    if (categorie != this.state.categorie) {
+      this.changeCategorie();
+    }
+
+
+
 
     return (
       <Fragment>
@@ -131,7 +133,7 @@ class Books extends Component {
 
         <Container>
 
-        {books && books.map((book, index) => {
+        {books && books.map((book) => {
 
 
           if (! book) return;
@@ -142,9 +144,7 @@ class Books extends Component {
           return (
             <Fragment key={book.get('id')}>
                 <BookItem>
-
                     <CardStyle>
-
                       <CardHeader avatar={
                           <AvatarStyle aria-label="Recipe">
                             <FirsLetter>
@@ -160,7 +160,6 @@ class Books extends Component {
                         title={ book.getIn(['volumeInfo', 'title']) }
                         subheader={ book.getIn(['volumeInfo', 'categories', 0]) }
                       />
-
                       {book.getIn(['volumeInfo', 'imageLinks', 'smallThumbnail']) ? (
                         <Link to={`/book/${book.get('id')}`}>
                           <CardMediaStyle 
@@ -172,9 +171,7 @@ class Books extends Component {
                         <Link to={`/book/${book.get('id')}`}>{ book.get('id') }</Link>
 
                       )}
-
                       <CardContent>
-
                             <strong>Autores</strong>
 
                             <ul> 
@@ -184,16 +181,11 @@ class Books extends Component {
                               })
                             }
                             </ul>
-
                       </CardContent>
-
                     </CardStyle>
-
                 </BookItem>
             </Fragment>
           )
-
-
         })}
 
 
@@ -206,8 +198,8 @@ class Books extends Component {
                 <PaginatorCustom>
                     <Pagination
                         activePage={ page }
-                        itemsCountPerPage={pageSize}
-                        totalItemsCount={ 220 }
+                        itemsCountPerPage={ pageSize }
+                        totalItemsCount={ totalItems }
                         pageRangeDisplayed={ 10 }
                         onChange={ this.handleChangePage }
                         firstPageText=" << "

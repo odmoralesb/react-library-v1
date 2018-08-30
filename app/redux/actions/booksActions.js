@@ -15,7 +15,7 @@ const receiveSingleBook = (payload) => ({
 
 
 const receiveCategorie = (payload) => ({
-    type: 'SINGLE_BOOK',
+    type: 'SET_CATEGORIE',
     payload,
 });
 
@@ -23,6 +23,8 @@ const receiveCategorie = (payload) => ({
 export const refreshBooks = () => ({
     type: 'REFRESH_BOOKS',
 });
+
+
 
 
 
@@ -47,8 +49,6 @@ export function getBooks(page=1, categorie=null) {
   }
 
 
-
-
   export function getBook(id) {    
 
     return async dispatch => {
@@ -60,6 +60,21 @@ export function getBooks(page=1, categorie=null) {
       }
 
       dispatch(receiveSingleBook(payload));
+
+    };
+
+  }
+
+  
+  export function setCategorie(name) {    
+
+    return async dispatch => {      
+
+      const payload = {
+        categorie: name
+      }
+
+      dispatch(receiveCategorie(payload));
 
     };
 
