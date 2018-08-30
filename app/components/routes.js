@@ -9,8 +9,8 @@ import {
 import Layout from './Layout';
 import Home from './Home';
 import Books from './Books';
+import Book from './Books/Book';
 import Contact from './Contact';
-import Book from './Home/Book';
 import NotFound from './404';
 
 const Routes = () => (
