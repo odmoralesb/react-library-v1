@@ -122,16 +122,18 @@ class Book extends Component {
                                     </div>
 
 
-                                    <a href="#">
+                                    <a href={book.getIn(['saleInfo', 'buyLink'])} target="_blank">
                                         <IconButton 
                                         aria-label="Agregar a favoritos" 
-                                        style={this.getLike()}>
+                                        style={{color: 'blue'}}>
                                             <Payment />
                                         </IconButton>
                                        
                                     </a>  
 
                                      <span>
+                                        {book.getIn(['saleInfo', 'listPrice', 'currencyCode'])}&nbsp;
+                                        $&nbsp;
                                         {book.getIn(['saleInfo', 'listPrice', 'amount'])}
                                     </span>                                  
 
