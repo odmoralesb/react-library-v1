@@ -27,7 +27,8 @@ class Header extends Component {
                             React-Library
                         </StyledTypography>
                         <Button href="/" color="inherit">Home</Button>
-                        <Button href="/contact" color="inherit">Acerca de</Button>
+                        <Button href="/contact" color="inherit">Contactenos</Button>
+                        {/* <Button href="/about" color="inherit">Acerca de</Button> */}
                     </ToolbarStyle>
                 </AppBarStyle>
             </HeaderContainer>
@@ -38,10 +39,5 @@ class Header extends Component {
     
     
     }
-
-
-
-
-
 
 export default Header;

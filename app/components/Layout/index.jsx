@@ -23,7 +23,7 @@ class Layout extends Component {
       <div>
         <Header title="React Library" />
         <Content body = { children } />
-        <Footer copyright="&copy; Desarrollado para Dev - Hack 2017"/>
+        <Footer copyright="&copy; Desarrollado para Dev - Hack 2017 By David Morales and Jewison  Garcia"/>
       </div>
     );
   }
