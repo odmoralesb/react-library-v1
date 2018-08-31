@@ -93,10 +93,10 @@ const styles = theme => ({
               </div>
               <div>
                 <TextField
-                  id="name"
+                  id="email"
                   label="Correo Electronico(*)"
                   className={classes.textField}
-                  value={this.state.name}
+                  value={this.state.email}
                   onChange={this.handleChange('email')}
                   margin="normal"
                   style={{ width: '350px' }}
@@ -104,10 +104,10 @@ const styles = theme => ({
               </div>
               <div>
                 <TextField
-                  id="name"
+                  id="phone"
                   label="Telefono"
                   className={classes.textField}
-                  value={this.state.name}
+                  value={this.state.phone}
                   onChange={this.handleChange('phone')}
                   margin="normal"
                   style={{ width: '350px' }}
