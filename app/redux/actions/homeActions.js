@@ -56,10 +56,14 @@ export function like(book) {
 
       likes = JSON.parse(likes);
 
-      if (likes.indexOf(id) == -1) {
-        likes.push(id);
-      }
+      const index = likes.indexOf(id);
 
+      if (index == -1) {
+        likes.push(id);
+      } else {
+        likes.splice(index, 1);
+      }
+      
       localStorage.setItem('likes', JSON.stringify(likes));
 
     } else {

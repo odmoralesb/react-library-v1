@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import ReactHtmlParser from 'react-html-parser';
 import PropTypes from 'prop-types';
 
 
@@ -21,7 +22,8 @@ import {
     FirsLetter, 
     CardMediaStyle,
     CardStyle,
-    TypographyStyle 
+    TypographyStyle,
+    CardActionsStyle, 
   } from './styles';
 
 
@@ -33,17 +35,37 @@ class Book extends Component {
     }
 
     componentDidMount() {
+
         const { id } = this.props.match.params;
         const { getBook } = this.props;
         getBook(id);
-      }
 
+        let likes = localStorage.getItem('likes');
+        if (likes) {    
+          likes = JSON.parse(likes);    
+          if (likes.indexOf(id) != -1) {
+            this.setState({ ilike: true })           
+          }
+        }
 
-    sendlike() {
-        const { book, like } = this.props;
-        like(book);
     }
 
+    state = {
+        ilike: false
+    };    
+
+
+    setLike () {
+        const { book, like } = this.props;        
+        like(book);
+        this.setState({ilike:!this.state.ilike})
+    }
+
+
+
+    getLike() {
+        return this.state.ilike ? {color: 'red'} : {color: 'gray'};
+    }
 
 
     render() {  
@@ -88,11 +110,21 @@ class Book extends Component {
                                 )}
 
                                 <CardContent>
-                                    <h3>Descripcion</h3>
-                                    <TypographyStyle paragraph>
-                                        { book.getIn(['volumeInfo', 'description']) }
-                                    </TypographyStyle>
+                                    <h3>Descripción</h3>
+                                    <div>
+                                        { ReactHtmlParser(book.getIn(['volumeInfo', 'description'])) }
+                                    </div>
                                 </CardContent>
+
+                                <CardActionsStyle disableActionSpacing>
+                                    <div onClick={() => this.setLike() }>
+                                    <IconButton 
+                                    aria-label="Agregar a favoritos" 
+                                    style={this.getLike()}>
+                                        <FavoriteIcon />
+                                    </IconButton>
+                                    </div>
+                                </CardActionsStyle>
 
                             </CardStyle>
                             
@@ -102,8 +134,7 @@ class Book extends Component {
 
                 )}
 
-
-                <button onClick={() => this.sendlike() }>Me gusta</button>
+                
 
             </Fragment>
 
