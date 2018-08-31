@@ -11,6 +11,7 @@ import Home from './Home';
 import Books from './Books';
 import Book from './Books/Book';
 import Contact from './Contact';
+import About from './About';
 import NotFound from './404';
 
 const Routes = () => (
@@ -22,6 +23,7 @@ const Routes = () => (
         <Route path="/categorie/:categorie" exact component={Books} />
         <Route path="/book/:id" exact component={Book} />
         <Route path="/contact" exact component={Contact} />
+        <Route path="/about" exact component={About} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
