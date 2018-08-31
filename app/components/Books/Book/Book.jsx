@@ -109,12 +109,6 @@ class Book extends Component {
                                     />
                                 )}
 
-                                <CardContent>
-                                    <h3>Descripción</h3>
-                                    <div>
-                                        { ReactHtmlParser(book.getIn(['volumeInfo', 'description'])) }
-                                    </div>
-                                </CardContent>
 
                                 <CardActionsStyle disableActionSpacing>
                                     <div onClick={() => this.setLike() }>
@@ -125,6 +119,17 @@ class Book extends Component {
                                     </IconButton>
                                     </div>
                                 </CardActionsStyle>
+
+
+
+                                <CardContent>
+                                    <h3>Descripción</h3>
+                                    <div>
+                                        { ReactHtmlParser(book.getIn(['volumeInfo', 'description'])) }
+                                    </div>
+                                </CardContent>
+
+
 
                             </CardStyle>
                             
