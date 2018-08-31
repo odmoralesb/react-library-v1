@@ -3,6 +3,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 
+import CardActions from '@material-ui/core/CardActions';
+
 
 
 export const Container = styled.div`
@@ -45,6 +47,12 @@ export const CardMediaStyle = styled(CardMedia)`
 export const TypographyStyle = styled(Typography)`
     text-align: justify;
     text-justify: inter-word;
+`;
+
+
+
+export const CardActionsStyle = styled(CardActions)`
+    display: flex;
 `;
 
 
