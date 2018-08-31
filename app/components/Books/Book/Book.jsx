@@ -11,6 +11,7 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import red from '@material-ui/core/colors/red';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import Payment from '@material-ui/icons/Payment';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -111,13 +112,32 @@ class Book extends Component {
 
 
                                 <CardActionsStyle disableActionSpacing>
+
                                     <div onClick={() => this.setLike() }>
-                                    <IconButton 
-                                    aria-label="Agregar a favoritos" 
-                                    style={this.getLike()}>
-                                        <FavoriteIcon />
-                                    </IconButton>
+                                        <IconButton 
+                                        aria-label="Agregar a favoritos" 
+                                        style={this.getLike()}>
+                                            <FavoriteIcon />
+                                        </IconButton>
                                     </div>
+
+
+                                    <a href={book.getIn(['saleInfo', 'buyLink'])} target="_blank">
+                                        <IconButton 
+                                        aria-label="Agregar a favoritos" 
+                                        style={{color: 'blue'}}>
+                                            <Payment />
+                                        </IconButton>
+                                       
+                                    </a>  
+
+                                     <span>
+                                        {book.getIn(['saleInfo', 'listPrice', 'currencyCode'])}&nbsp;
+                                        $&nbsp;
+                                        {book.getIn(['saleInfo', 'listPrice', 'amount'])}
+                                    </span>                                  
+
+
                                 </CardActionsStyle>
 
 
