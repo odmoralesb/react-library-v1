@@ -4,4 +4,5 @@ export default {
     SINGLE_BOOK: 'SINGLE_BOOK',    
     SET_CATEGORIA: 'SET_CATEGORIA',
     LOAD_HOME: 'LOAD_HOME',
+    LIKE: 'LIKE',
 };

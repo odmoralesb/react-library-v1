@@ -7,7 +7,6 @@ const initialState = fromJS({
   categorie: null,
   page: 1,
   book: null,
-  latestPosts: [],
 });
 
 function booksReducer(state = initialState, action) {    
@@ -33,6 +32,16 @@ function booksReducer(state = initialState, action) {
             map
             .set('book', fromJS(action.payload.book))
         });
+
+
+    case 'REFRESH_BOOKS':
+        return state.set('refresh', action.payload.refresh);
+
+
+
+
+
+
 
     default:
       return initialState;

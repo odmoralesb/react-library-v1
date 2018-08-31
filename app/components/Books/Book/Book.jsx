@@ -39,23 +39,30 @@ class Book extends Component {
       }
 
 
+    sendlike() {
+        const { book, like } = this.props;
+        like(book);
+    }
+
+
 
     render() {  
 
-        const { book } = this.props 
+        const { book } = this.props
 
         let avatar;
 
         if (book) {
-
-            avatar = book.getIn(['volumeInfo', 'authors', 0]) ? book.getIn(['volumeInfo', 'authors', 0]).substr(0, 1) : '?' 
-
+            avatar = 
+                book.getIn(['volumeInfo', 'authors', 0]) ? 
+                    book.getIn(['volumeInfo', 'authors', 0]).substr(0, 1) : '?' 
         }
             
 
 
         return (
             <Fragment>
+
                 {book && (
 
                     <Container>
@@ -94,6 +101,10 @@ class Book extends Component {
                     </Container>
 
                 )}
+
+
+                <button onClick={() => this.sendlike() }>Me gusta</button>
+
             </Fragment>
 
         );

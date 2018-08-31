@@ -200,9 +200,6 @@ class Home extends Component {
                 </Fragment>);
             })}
             </Container>
-
-
-
             
         </Fragment>
         );

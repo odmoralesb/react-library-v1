@@ -20,9 +20,13 @@ const receiveCategorie = (payload) => ({
 });
 
 
-export const refreshBooks = () => ({
+const refresh = (payload) => ({
     type: 'REFRESH_BOOKS',
+    payload,
 });
+
+
+
 
 
 
@@ -79,5 +83,30 @@ export function getBooks(page=1, categorie=null) {
     };
 
   }
+
+
+
+
+
+  export function refreshBook(value) {    
+
+    return async dispatch => {      
+
+      const payload = {
+        refresh: value
+      }
+
+      dispatch(refresh(payload));
+
+    };
+
+  }
+
+
+
+
+
+
+
 
 

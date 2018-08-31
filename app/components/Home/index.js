@@ -5,6 +5,7 @@ import Home from './Home';
 
 const mapStateToProps = (state) => ({
   homeData: state.homeData,
+  likes: state.booksData.get('likes'),
 });
 
 const mapDispatchToProps = (dispatch) => (
